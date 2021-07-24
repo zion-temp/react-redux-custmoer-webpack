@@ -4,9 +4,9 @@ const webpack = require('webpack')
 const friendlyErrorsWebpackPlugin = require('friendly-errors-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const OptimizeCssAssetsWebpackPlugin = require('optimize-css-assets-webpack-plugin')
-const {
-    CleanWebpackPlugin
-} = require('clean-webpack-plugin')
+const { CleanWebpackPlugin } = require('clean-webpack-plugin')
+const CopyWebpackPlugin = require('copy-webpack-plugin');
+const WorkboxWebpackPlugin = require('workbox-webpack-plugin')
 module.exports = {
     entry: {
         app: './src/index.tsx'
@@ -113,15 +113,33 @@ module.exports = {
          //压缩css
         new OptimizeCssAssetsWebpackPlugin(),
         new friendlyErrorsWebpackPlugin(),
+        // 
         new CleanWebpackPlugin(),
+        // x限制js 文件大小
         new webpack.optimize.AggressiveSplittingPlugin({
-            minSize: 2048, // 字节，分割点。默认：30720
-            maxSize: 5120, // 字节，每个文件最大字节。默认：51200
+            minSize: 30720, // 字节，分割点。默认：30720
+            maxSize: 51200, // 字节，每个文件最大字节。默认：51200
             chunkOverhead: 0, // 默认：0
             entryChunkMultiplicator: 1, // 默认：1
         }),
+        // 抽离css
         new MiniCssExtractPlugin({
             filename:'css/main.[contenthash:10].css',
+        }),
+        // media下面的文件不需要打包直接应用
+        new CopyWebpackPlugin({
+            patterns:[
+                {
+                    from:path.join(__dirname,'/public/media'),//打包的静态资源目录地址
+                    to:'./media' //打包到dist下面的public
+                }
+            ]
+            
+        }),
+        // 生成配serviceWorker置文件
+        new WorkboxWebpackPlugin.GenerateSW({
+            clientsClaim:true, //删除旧的serviceWorker
+            skipWaiting:true, //快速启动 跳过等待
         }),
     ],
     devtool: 'source-map',

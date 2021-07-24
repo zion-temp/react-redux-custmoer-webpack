@@ -5,6 +5,8 @@ const friendlyErrorsWebpackPlugin = require('friendly-errors-webpack-plugin');
 const {
     CleanWebpackPlugin
 } = require('clean-webpack-plugin')
+
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 module.exports = {
     entry: {
         app: './src/index.tsx'
@@ -84,6 +86,16 @@ module.exports = {
         }),
         new friendlyErrorsWebpackPlugin(),
         new CleanWebpackPlugin(),
+        
+        new CopyWebpackPlugin({
+            patterns:[
+                {
+                    from:path.join(__dirname,'/public/media'),//打包的静态资源目录地址
+                    to:'./media' //打包到dist下面的public
+                }
+            ]
+            
+        })
     ],
     devtool: 'inline-source-map',
     devServer: {

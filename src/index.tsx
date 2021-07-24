@@ -30,3 +30,13 @@ ReactDOM.render(
         <App />
     </Provider>
 , document.getElementById("root"));
+
+// 渐进式serviceworker
+if('serviceWorker' in navigator){
+    navigator.serviceWorker.register('/service-worker.js').then(()=>{
+     console.log('succcess')
+    }).catch(()=>{
+     console.log('feld')
+    })
+ 
+}
