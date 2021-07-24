@@ -4,9 +4,13 @@ import {useSelector, useDispatch} from 'react-redux'
 import "./index.less";
 import { Button } from "antd";
 import actionType from "../../store/actionType";
+
+
+const Logo =  require('@/static/imgs/app-plus/location@3x.png')
 interface countTypt{
 	count:number
 }
+
 interface countReducerType  {
 	countReducer:any
 }
@@ -37,6 +41,8 @@ const About: FC = () => {
 			<Button type="primary" >
 				About  {status.count}
 			</Button>
+			<img src={Logo} alt="" />
+			<img src={require('../../static/imgs/logo.png')} alt="" />
 			
 		</div>
 	);

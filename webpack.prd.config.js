@@ -48,7 +48,19 @@ module.exports = {
             },
             {
                 test: /\.(?:ico|gif|png|jpg|jpeg)$/i,
-                type: 'asset/resource',
+                // type: 'asset/resource',
+                use:{
+                    loader:'url-loader', //依赖file-loader
+                    options:{
+                        limit:1 * 1024, //小于这么大的打包成base64的字符串
+                        // url-loader模式使用es6模块化解析，html-loader映入图片是common.js
+                        // 关闭url-loaderes6模块化解析 使用common.js解析
+                        esModule:false,
+                        // 区hash的前10位 ext 原来的扩展名
+                        name:'[hash:10].[ext]',
+                        outputPath:'imgs'
+                    }
+                }
             },
             {
                 test: /\.(woff(2)?|eot|ttf|otf|svg|)$/,
