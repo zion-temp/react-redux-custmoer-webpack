@@ -1,6 +1,6 @@
 import React,{FC} from "react";
 
-import "./index.less";
+import './index.less'
 import { Button } from 'antd';
 import {useSelector, useDispatch} from 'react-redux'
 import {

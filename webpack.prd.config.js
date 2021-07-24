@@ -3,6 +3,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin')
 const webpack = require('webpack')
 const friendlyErrorsWebpackPlugin = require('friendly-errors-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
+const OptimizeCssAssetsWebpackPlugin = require('optimize-css-assets-webpack-plugin')
 const {
     CleanWebpackPlugin
 } = require('clean-webpack-plugin')
@@ -69,7 +70,9 @@ module.exports = {
                         options: {
                             importLoaders: 1,
                         },
-                    }, 'postcss-loader', {
+                    },
+                    'postcss-loader', 
+                    {
                         loader: 'less-loader',
                         options:{
                             modifyVars:{
@@ -95,6 +98,8 @@ module.exports = {
             template: path.resolve(__dirname, './public/index.html'),
             filename: 'index.html',
         }),
+         //压缩css
+        new OptimizeCssAssetsWebpackPlugin(),
         new friendlyErrorsWebpackPlugin(),
         new CleanWebpackPlugin(),
         new webpack.optimize.AggressiveSplittingPlugin({
