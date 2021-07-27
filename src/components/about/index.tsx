@@ -5,7 +5,10 @@ import "./index.less";
 import { Button } from "antd";
 import actionType from "../../store/actionType";
 
-
+import Bar from "../bar"
+import Kline from "../kline";
+import Line from "../line";
+import Radar from "../radar"
 const Logo =  require('@/static/imgs/app-plus/location@3x.png')
 interface countTypt{
 	count:number
@@ -35,14 +38,18 @@ const About: FC = () => {
 	}
 	return (
 		<div>
-
-			<button onClick={zj}>+</button>
+			<Radar/>
+			<Line/>
+			<Bar/>
+			<Kline/>
+			
+			{/* <button onClick={zj}>+</button>
 			<button onClick={js}>-</button>
 			<Button type="primary" >
 				About  {status.count}
-			</Button>
-			<img src={Logo} alt="" />
-			<img src={require('../../static/imgs/logo.png')} alt="" />
+			</Button> */}
+			{/* <img src={Logo} alt="" /> */}
+			{/* <img src={require('../../static/imgs/logo.png')} alt="" /> */}
 			
 		</div>
 	);
