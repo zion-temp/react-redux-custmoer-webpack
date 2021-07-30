@@ -14,6 +14,7 @@ module.exports = {
     output: {
         path: path.resolve(__dirname, './dist'),
         filename: 'js/[name].[contenthash:10].js',
+        assetModuleFilename: 'images/[hash:10][ext]',
         publicPath: './'
     },
     resolve: {
@@ -48,19 +49,25 @@ module.exports = {
             },
             {
                 test: /\.(?:ico|gif|png|jpg|jpeg)$/i,
-                // type: 'asset/resource',
-                use:{
-                    loader:'url-loader', //依赖file-loader
-                    options:{
-                        limit:1 * 1024, //小于这么大的打包成base64的字符串
-                        // url-loader模式使用es6模块化解析，html-loader映入图片是common.js
-                        // 关闭url-loaderes6模块化解析 使用common.js解析
-                        esModule:false,
-                        // 区hash的前10位 ext 原来的扩展名
-                        name:'[hash:10].[ext]',
-                        outputPath:'imgs'
-                    }
-                }
+                type: 'asset/resource',
+                // use:{
+                //     loader:'url-loader', //依赖file-loader
+                //     options:{
+                //         limit:1 * 1024, //小于这么大的打包成base64的字符串
+                //         // url-loader模式使用es6模块化解析，html-loader映入图片是common.js
+                //         // 关闭url-loaderes6模块化解析 使用common.js解析
+                //         esModule:false,
+                //         // 区hash的前10位 ext 原来的扩展名
+                //         name:'[hash:5][name].[ext]',
+                //         outputPath:'imgs',
+                //         publicPath: "imgs",
+                //     }
+                // }
+            },
+            {
+                test:/\.html$/,
+                //处理html的image文件 负责引入img 从而倍url-loader 处理
+                loader:'html-loader'
             },
             {
                 test: /\.(woff(2)?|eot|ttf|otf|svg|)$/,
@@ -74,7 +81,7 @@ module.exports = {
                         options:{
                             // 这里可以指定一个 publicPath
                             // 默认使用 webpackOptions.output中的publicPath
-                            // publicPath: '../'
+                            publicPath: '../'
                         }
                     },
                     {

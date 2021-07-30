@@ -20,7 +20,7 @@ const Home: FC = (res) => {
 		(res as any).history.push({ pathname: "/about" });
 	};
 	return (
-		<div>
+		<div className="imgbox">
 			<Button type="primary" onClick={toabout}>
 				Home
 			</Button>
