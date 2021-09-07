@@ -1,6 +1,6 @@
 import React,{FC,Suspense,useReducer} from "react";
 import ReactDOM from "react-dom";
-import { HashRouter, Switch, Route ,Redirect,Link} from 'react-router-dom'
+import { HashRouter, Switch, Route ,Redirect,Link,BrowserRouter as Router} from 'react-router-dom'
 
 import "@/index.less";
 
@@ -10,7 +10,7 @@ const Home = React.lazy(() => import('./components/home/index'));
 const About = React.lazy(() => import('./components/about/index'));
 const App:FC = () => {
     return <>
-            <HashRouter>
+            <Router>
                 <Link to="/">首页</Link>
                 <Link to="/about">关于我们</Link>
                 <Switch>
@@ -20,7 +20,7 @@ const App:FC = () => {
                             <Route path="/about" component={About} />
                         </Suspense>
                 </Switch>
-            </HashRouter>
+            </Router>
     </>
 };
 

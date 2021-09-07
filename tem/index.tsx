@@ -8,4 +8,5 @@ const Home: FC = (res) => {
 		</div>
 	);
 };
+
 export default Home;

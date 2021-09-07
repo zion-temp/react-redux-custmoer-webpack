@@ -43,13 +43,13 @@ const About: FC = () => {
 			<Bar/>
 			<Kline/>
 			
-			{/* <button onClick={zj}>+</button>
+			<button onClick={zj}>+</button>
 			<button onClick={js}>-</button>
 			<Button type="primary" >
 				About  {status.count}
-			</Button> */}
-			{/* <img src={Logo} alt="" /> */}
-			{/* <img src={require('../../static/imgs/logo.png')} alt="" /> */}
+			</Button>
+			<img src={Logo} alt="" />
+			<img src={require('../../static/imgs/logo.png')} alt="" />
 			
 		</div>
 	);
