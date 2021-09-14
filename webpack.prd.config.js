@@ -7,6 +7,7 @@ const OptimizeCssAssetsWebpackPlugin = require('optimize-css-assets-webpack-plug
 const { CleanWebpackPlugin } = require('clean-webpack-plugin')
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const WorkboxWebpackPlugin = require('workbox-webpack-plugin')
+const AntDesignThemePlugin = require('antd-theme-webpack-plugin');
 module.exports = {
     entry: {
         app: './src/index.tsx'
@@ -18,9 +19,9 @@ module.exports = {
         publicPath: './'
     },
     resolve: {
-        extensions: ['.ts', '.tsx', '.js', '.jsx','less'],
-        alias:{
-            '@':path.resolve(__dirname,'src/'),
+        extensions: ['.ts', '.tsx', '.js', '.jsx', 'less'],
+        alias: {
+            '@': path.resolve(__dirname, 'src/'),
         }
     },
     module: {
@@ -33,7 +34,7 @@ module.exports = {
                         presets: ['@babel/preset-env'],
                         cacheDirectory: true
                     }
-                },'ts-loader'],
+                }, 'ts-loader'],
                 exclude: /node_modules/,
             },
             {
@@ -65,9 +66,9 @@ module.exports = {
                 // }
             },
             {
-                test:/\.html$/,
+                test: /\.html$/,
                 //处理html的image文件 负责引入img 从而倍url-loader 处理
-                loader:'html-loader'
+                loader: 'html-loader'
             },
             {
                 test: /\.(woff(2)?|eot|ttf|otf|svg|)$/,
@@ -77,8 +78,8 @@ module.exports = {
                 test: /\.(less|css)$/,
                 use: [
                     {
-                        loader:MiniCssExtractPlugin.loader,//提取css 成单独文件
-                        options:{
+                        loader: MiniCssExtractPlugin.loader,//提取css 成单独文件
+                        options: {
                             // 这里可以指定一个 publicPath
                             // 默认使用 webpackOptions.output中的publicPath
                             publicPath: '../'
@@ -90,11 +91,11 @@ module.exports = {
                             importLoaders: 1,
                         },
                     },
-                    'postcss-loader', 
+                    'postcss-loader',
                     {
                         loader: 'less-loader',
-                        options:{
-                            modifyVars:{
+                        options: {
+                            modifyVars: {
                                 'primary-color': '#1DA57A',
                                 'link-color': '#1DA57A',
                                 'border-radius-base': '2px',
@@ -102,13 +103,13 @@ module.exports = {
                         }
                     }]
             },
-           
+
         ]
     },
     mode: 'production',
-    optimization:{
-        splitChunks:{
-            chunks:'all'
+    optimization: {
+        splitChunks: {
+            chunks: 'all'
         }
     },
     plugins: [
@@ -117,7 +118,7 @@ module.exports = {
             template: path.resolve(__dirname, './public/index.html'),
             filename: 'index.html',
         }),
-         //压缩css
+        //压缩css
         new OptimizeCssAssetsWebpackPlugin(),
         new friendlyErrorsWebpackPlugin(),
         // 
@@ -131,23 +132,34 @@ module.exports = {
         }),
         // 抽离css
         new MiniCssExtractPlugin({
-            filename:'css/main.[contenthash:10].css',
+            filename: 'css/main.[contenthash:10].css',
         }),
         // media下面的文件不需要打包直接应用
         new CopyWebpackPlugin({
-            patterns:[
+            patterns: [
                 {
-                    from:path.join(__dirname,'/public/media'),//打包的静态资源目录地址
-                    to:'./media' //打包到dist下面的public
+                    from: path.join(__dirname, '/public/media'),//打包的静态资源目录地址
+                    to: './media' //打包到dist下面的public
                 }
             ]
-            
+
         }),
         // 生成配serviceWorker置文件
         new WorkboxWebpackPlugin.GenerateSW({
-            clientsClaim:true, //删除旧的serviceWorker
-            skipWaiting:true, //快速启动 跳过等待
+            clientsClaim: true, //删除旧的serviceWorker
+            skipWaiting: true, //快速启动 跳过等待
         }),
+        new AntDesignThemePlugin({
+            antDir: path.join(__dirname, './node_modules/antd'),//antd包位置
+            stylesDir: path.join(__dirname, './src/styles/theme'),//指定皮肤文件夹
+            varFile: path.join(__dirname, './src/styles/theme/variables.less'),//自己设置默认的主题色
+            indexFileName: './public/index.html',
+            mainLessFile: path.join(__dirname, './src/styles/theme/index.less'),
+            themeVariables: [//这里写要改变的主题变量
+                '@primary-color',
+            ],
+            // generateOnce: false,
+        })
     ],
     devtool: 'source-map',
 }
