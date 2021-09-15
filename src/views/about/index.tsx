@@ -5,10 +5,10 @@ import "./index.less";
 import { Button } from "antd";
 import actionType from "../../store/actionType";
 
-import Bar from "../bar"
-import Kline from "../kline";
-import Line from "../line";
-import Radar from "../radar"
+import Bar from "../../components/bar"
+import Kline from "../../components/kline";
+import Line from "../../components/line";
+import Radar from "../../components/radar"
 // const Logo =  require('@/static/imgs/app-plus/location@3x.png')
 interface countTypt{
 	count:number
