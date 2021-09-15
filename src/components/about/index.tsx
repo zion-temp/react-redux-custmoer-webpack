@@ -9,7 +9,7 @@ import Bar from "../bar"
 import Kline from "../kline";
 import Line from "../line";
 import Radar from "../radar"
-const Logo =  require('@/static/imgs/app-plus/location@3x.png')
+// const Logo =  require('@/static/imgs/app-plus/location@3x.png')
 interface countTypt{
 	count:number
 }
@@ -48,7 +48,7 @@ const About: FC = () => {
 			<Button type="primary" >
 				About  {status.count}
 			</Button>
-			<img src={Logo} alt="" />
+			{/* <img src={Logo} alt="" /> */}
 			<img src={require('../../static/imgs/logo.png')} alt="" />
 			
 		</div>

@@ -149,6 +149,7 @@ module.exports = {
             clientsClaim: true, //删除旧的serviceWorker
             skipWaiting: true, //快速启动 跳过等待
         }),
+        // 指定义主题风格
         new AntDesignThemePlugin({
             antDir: path.join(__dirname, './node_modules/antd'),//antd包位置
             stylesDir: path.join(__dirname, './src/styles/theme'),//指定皮肤文件夹

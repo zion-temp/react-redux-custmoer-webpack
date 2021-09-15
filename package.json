@@ -1,13 +1,11 @@
 {
   "name": "react-redux-custmoer-webpack",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "main": "index.js",
   "scripts": {
-    "build": "webpack",
-    "build:pro": "cross-env NODE_ENV=production webpack --config webpack.prd.config.js",
-    "watch": "webpack --watch",
+    "start": "npm run dev",
     "dev": "cross-env NODE_ENV=development webpack serve --config webpack.config.js",
-    "start": "webpack serve",
+    "build": "cross-env NODE_ENV=production webpack --config webpack.prd.config.js",
     "server": "node server.js"
   },
   "license": "MIT",
@@ -49,6 +47,7 @@
     "antd-theme-webpack-plugin": "^1.3.9",
     "copy-webpack-plugin": "^9.0.1",
     "cross-env": "^7.0.3",
+    "darkmode-js": "^1.5.7",
     "echarts": "^5.1.2",
     "echarts-for-react": "^3.0.1",
     "file-loader": "^6.2.0",

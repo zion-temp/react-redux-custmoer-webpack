@@ -87,7 +87,7 @@ module.exports = {
     mode: 'development',
     plugins: [
         new HtmlWebpackPlugin({
-            title: 'react',
+            title: 'react-custom',
             template: path.resolve(__dirname, './public/index.html'),
             filename: 'index.html',
         }),

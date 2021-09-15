@@ -4,11 +4,14 @@ import { HashRouter, Switch, Route ,Redirect,Link,BrowserRouter as Router} from 
 
 import "@/index.less";
 
+import Darkmode from 'darkmode-js';
 import {Provider} from 'react-redux'
 import store from "./store/index";
 const Home = React.lazy(() => import('./components/home/index'));
 const About = React.lazy(() => import('./components/about/index'));
 const App:FC = () => {
+    new Darkmode().showWidget();
+
     return <>
             <Router>
                 <Link to="/">首页</Link>

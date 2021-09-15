@@ -3,13 +3,12 @@
 
 <head>
     <title>react</title>
-    <script src="./media/index.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/darkmode-js@1.5.7/lib/darkmode-js.min.js"></script>  
-    <!-- <link rel="stylesheet/less" type="text/css" href="./media/theme.less" />      -->
+    <!-- <script src="./media/index.js"></script> -->
 </head>
 
 <body>
-    <link rel="stylesheet/less" type="text/css" href="/color.less" /><!--这里link放在哪，style生成在哪里，注意样式被覆盖-->
+    <link rel="stylesheet/less" type="text/css" href="/color.less" />
+    <!--这里link放在哪，style生成在哪里，注意样式被覆盖-->
     <script>
         window.less = {
             async: false,
@@ -19,11 +18,6 @@
 
     <div id="root"></div>
 </body>
-<script>
-    function addDarkmodeWidget() {
-        new Darkmode().showWidget();
-    }
-    window.addEventListener('load', addDarkmodeWidget);
-</script>
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/less.js/2.7.2/less.min.js"></script>
+<script type="text/javascript" src="./media/less.min.js"></script>
+
 </html>

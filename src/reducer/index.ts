@@ -1,23 +1,22 @@
-import React,{FC,useContext} from "react";
+import React, { FC, useContext } from "react";
 
 
 export const themes = {
-   
-    count:0
+    count: 0
 };
-  
+
 interface dType {
-    foreground:string;
-    background:string;
+    foreground: string;
+    background: string;
 }
 interface themType {
-    count:number;
+    count: number;
 }
 interface actionType {
-    type:string
+    type: string
 }
 
-export function reducer(state:themType, action:actionType) {
+export function reducer(state: themType, action: actionType) {
     switch (action.type) {
         case 'increment':
             return {
@@ -33,5 +32,4 @@ export function reducer(state:themType, action:actionType) {
             throw new Error();
     }
 }
-export  const ThemeContext = React.createContext<themType>(themes);
-  
+export const ThemeContext = React.createContext<themType>(themes);
