@@ -8,10 +8,11 @@ import Darkmode from 'darkmode-js';
 import { Provider } from 'react-redux'
 import store from "./store/index";
 const Home = React.lazy(() => import('./views/home/index'));
-// import Home from "./views/home"
+
 const About = React.lazy(() => import('./views/about/index'));
 
-// const ErrorPage = React.lazy(() => import('./views/404/index'));
+const ErrorPage = React.lazy(() => import('./views/404/index'));
+
 import { optionsType } from './type/index'
 
 import routers from './config/routes'
@@ -87,7 +88,6 @@ const App: FC = () => {
         new Darkmode(option).showWidget();
     }, [])
     return <>
-
         {
             routerFilter(routers, true)
         }

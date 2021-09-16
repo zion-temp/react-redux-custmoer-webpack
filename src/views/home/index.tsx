@@ -6,7 +6,8 @@ import { Button } from "antd";
 import { useSelector, useDispatch } from "react-redux";
 import { HomeOutlined } from "@ant-design/icons";
 import { Switch, Route } from "react-router-dom"
-import { Comlist } from "../comlist";
+// import { Comlist } from "../comlist";
+const  Comlist  = React.lazy(() => import('../comlist'));
 const About = React.lazy(() => import('../about/index'));
 // import less from 'less';
 interface countTypt {
@@ -46,13 +47,17 @@ const Home: FC = (res) => {
 			</Button>
 			<HomeOutlined />
 			<div className="box1">{status.count} </div>
-			
-			<Route exact path="/home/c" component={()=>(
-				<Comlist>
-					child test
-				</Comlist>
-			)}></Route>
-			
+			<Switch>
+				<Suspense fallback={<div>加载中...</div>}>
+					<Route exact path="/home/c" component={() => (
+						<Comlist>
+							child test
+						</Comlist>
+					)}></Route>
+				</Suspense>
+			</Switch>
+
+
 
 		</div>
 	);

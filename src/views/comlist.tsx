@@ -1,10 +1,10 @@
 
 import * as React from 'react';
 type Props = {
-    children:any;
+    children:any
 };
 // FSC
-export const Comlist = (props: Props) => {
+const Comlist = (props: Props) => {
     return (
         <div>
             Comlist
@@ -14,3 +14,4 @@ export const Comlist = (props: Props) => {
         </div>
     );
 };
+export default Comlist;
