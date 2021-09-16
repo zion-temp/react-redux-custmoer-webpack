@@ -1,10 +1,13 @@
-import React, { FC } from "react";
+import React, { FC, Suspense } from "react";
 import echarts from 'echarts'
 import ReactECharts from 'echarts-for-react';
 import "./index.less";
 import { Button } from "antd";
 import { useSelector, useDispatch } from "react-redux";
 import { HomeOutlined } from "@ant-design/icons";
+import { Switch, Route } from "react-router-dom"
+import { Comlist } from "../comlist";
+const About = React.lazy(() => import('../about/index'));
 // import less from 'less';
 interface countTypt {
 	count: number;
@@ -16,6 +19,8 @@ const Home: FC = (res) => {
 	// less.modifyVars({
 	// 	'@primary-color': 'red'
 	//  });
+	// console.log(res);
+
 	const status = useSelector<countReducerType, countTypt>((state) => {
 		return state.countReducer;
 	});
@@ -23,14 +28,14 @@ const Home: FC = (res) => {
 		// (res as any).history.push({ pathname: "/about" });
 
 		window.less.modifyVars(//更换主题颜色要这么写
-            {
-                '@primary-color': '#1DA57A',
-            }
-        )
-        .then(() => {console.log('success')})
-        .catch(error => {
-            console.log(error);
-        });
+			{
+				'@primary-color': '#1DA57A',
+			}
+		)
+			.then(() => { console.log('success') })
+			.catch(error => {
+				console.log(error);
+			});
 
 
 	};
@@ -41,7 +46,13 @@ const Home: FC = (res) => {
 			</Button>
 			<HomeOutlined />
 			<div className="box1">{status.count} </div>
-
+			
+			<Route exact path="/home/c" component={()=>(
+				<Comlist>
+					child test
+				</Comlist>
+			)}></Route>
+			
 
 		</div>
 	);
