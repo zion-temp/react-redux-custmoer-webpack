@@ -87,6 +87,8 @@ const App: FC = () => {
     useEffect(() => {
         new Darkmode(option).showWidget();
     }, [])
+    
+    // /^\/(?:[^/]+\/)*[^/]+$/
     return <>
         {
             routerFilter(routers, true)
