@@ -5,7 +5,7 @@ import "./index.less";
 import { Button } from "antd";
 import { useSelector, useDispatch } from "react-redux";
 import { HomeOutlined } from "@ant-design/icons";
-import { Switch, Route } from "react-router-dom"
+import { Switch, Route, withRouter } from "react-router-dom"
 // import { Comlist } from "../comlist";
 const  Comlist  = React.lazy(() => import('../comlist'));
 const About = React.lazy(() => import('../about/index'));
@@ -26,17 +26,17 @@ const Home: FC = (res) => {
 		return state.countReducer;
 	});
 	const toabout = () => {
-		// (res as any).history.push({ pathname: "/about" });
+		(res as any).history.push({ pathname: "/about" });
 
-		window.less.modifyVars(//更换主题颜色要这么写
-			{
-				'@primary-color': '#1DA57A',
-			}
-		)
-			.then(() => { console.log('success') })
-			.catch(error => {
-				console.log(error);
-			});
+		// window.less.modifyVars(//更换主题颜色要这么写
+		// 	{
+		// 		'@primary-color': '#1DA57A',
+		// 	}
+		// )
+		// 	.then(() => { console.log('success') })
+		// 	.catch(error => {
+		// 		console.log(error);
+		// 	});
 
 
 	};
@@ -63,4 +63,4 @@ const Home: FC = (res) => {
 	);
 };
 
-export default Home;
+export default withRouter(Home);
