@@ -28,15 +28,15 @@ const Home: FC = (res) => {
 	const toabout = () => {
 		(res as any).history.push({ pathname: "/about" });
 
-		// window.less.modifyVars(//更换主题颜色要这么写
-		// 	{
-		// 		'@primary-color': '#1DA57A',
-		// 	}
-		// )
-		// 	.then(() => { console.log('success') })
-		// 	.catch(error => {
-		// 		console.log(error);
-		// 	});
+		window.less.modifyVars(//更换主题颜色要这么写
+			{
+				'@primary-color': '#1DA57A',
+			}
+		)
+			.then(() => { console.log('success') })
+			.catch(error => {
+				console.log(error);
+			});
 
 
 	};

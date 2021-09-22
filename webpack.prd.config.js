@@ -95,11 +95,12 @@ module.exports = {
                     {
                         loader: 'less-loader',
                         options: {
-                            modifyVars: {
-                                'primary-color': '#1DA57A',
-                                'link-color': '#1DA57A',
-                                'border-radius-base': '2px',
-                            }
+                            javascriptEnabled: true,
+                            // modifyVars: {
+                            //     'primary-color': '#1DA57A',
+                            //     'link-color': '#1DA57A',
+                            //     'border-radius-base': '2px',
+                            // }
                         }
                     }]
             },
@@ -159,7 +160,8 @@ module.exports = {
             themeVariables: [//这里写要改变的主题变量
                 '@primary-color',
             ],
-            // generateOnce: false,
+            publicPath:'',
+            generateOnce: false,
         })
     ],
     devtool: 'source-map',
