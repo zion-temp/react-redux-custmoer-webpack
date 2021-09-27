@@ -23,7 +23,8 @@ const About: FC = () => {
 	const status =useSelector<countReducerType,countTypt>(state=>{
 		return state.countReducer
 	})
-
+	console.log('组件更新了。。。。');
+	
 	const dispatch = useDispatch()
 	const zj = () => {
 		dispatch({
