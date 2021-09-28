@@ -16,7 +16,11 @@ module.exports = {
         path: path.resolve(__dirname, './dist'),
         filename: 'js/[name].[contenthash:10].js',
         assetModuleFilename: 'images/[hash:10][ext]',
-        publicPath: './'
+        publicPath: './',
+        environment: {
+            // 是否使用箭头函数
+            arrowFunction: false,
+        },
     },
     resolve: {
         extensions: ['.ts', '.tsx', '.js', '.jsx', 'less'],
@@ -160,9 +164,11 @@ module.exports = {
             themeVariables: [//这里写要改变的主题变量
                 '@primary-color',
             ],
-            publicPath:'',
+            publicPath: '',
             generateOnce: false,
         })
     ],
     devtool: 'source-map',
+    // webpack 将生成 web 平台的运行时代码，并且只使用 ES5 相关的特性
+    target: ['web', 'es5'],
 }
